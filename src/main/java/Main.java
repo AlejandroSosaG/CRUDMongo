@@ -50,7 +50,10 @@ public class Main {
                     actualizarAlumno(nombre, campo, valor);
                     break;
                 case 5:
-                    borrarAlumnoPorID("");
+                    String id;
+                    System.out.println("Introduzca el id del alumno que desea borrar");
+                    id = sc.nextLine();
+                    borrarAlumnoPorID(id);
                     break;
                 case 6:
                     break;
@@ -64,7 +67,6 @@ public class Main {
      */
     public static void insertarAlumno(){
         MongoCollection<Document> collection = database.getCollection("Alumnos");
-        // Se inserta un nuevo registro
         database .getCollection("Alumnos").insertOne(
                 new Document()
                         .append("nombre","ale")
@@ -73,7 +75,8 @@ public class Main {
                         .append("Edad",21));
     }
     /**
-     * Método que se encarga de mostrar por pantalla los datos de un alumno con el nombre que se le pasa por parámetro.
+     * Método que se encarga de mostrar por pantalla los datos de un alumno con el nombre que se le
+     * pasa por parámetro.
      * @param nombre nombre del alumno que se quiere mostrar
      */
     public static void mostrarAlumnoPorNombre(String nombre){
@@ -85,7 +88,6 @@ public class Main {
             System.out.println("No existe ningún alumno con ese nombre");
         }
     }
-
     /**
      * Método que muestra por pantalla los datos de todas las personas de la tabla Alumnos.
      */
@@ -96,7 +98,6 @@ public class Main {
             System.out.println(doc.toJson());
         }
     }
-
     /**
      * Método que se encarga de actualizar el campo que se le pasa por parámetro al alumno con nombre
      * pasado por parámetro con nuevo valor también pasado por parámetro.
@@ -114,7 +115,7 @@ public class Main {
     }
     /**
      * Método que borra un alumno con el id que se pasa por parámetro.
-     * @param id id del alumno que se quiere borrar
+     * @param id id del alumno que se quiere eliminar
      */
     public static void borrarAlumnoPorID(String id){
         MongoCollection<Document> collection = database.getCollection("Alumnos");
